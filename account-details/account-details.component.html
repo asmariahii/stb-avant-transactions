@@ -1,0 +1,49 @@
+
+<div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
+    <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
+        <h1 class="h2 pt-xl-1 pb-3"></h1>
+
+                        <div class="clearfix">
+                            <h2 class="title-left">Dernières Transactions</h2>
+                            <label for="start-date" class="date-label" >Date Début:</label>
+                            <input type="date" id="start-date" [(ngModel)]="startDate" placeholder="Start Date" class="date-input">
+                            
+                            <label for="end-date" class="date-label">Date Fin:</label>
+                            <input type="date" id="end-date" [(ngModel)]="endDate" placeholder="End Date" class="date-input">
+                            <button (click)="filterByDate()">Filter</button>ng
+                            
+                            
+                          </div>
+                          <table>
+                            <thead>
+                              <tr style="color: rgb(229, 229, 239);">
+                                <th width="20%">Date Opération</th>
+                                <th width="20%">Opération</th>
+                                <th width="30%">Type Opération</th>
+                                <th width="15%">Référence</th>
+                                <th width="22%">Montant</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let c of filteredAccount">
+                                <td>{{c.dateOperation}}</td>
+                                <td>{{c.Operation}}</td>
+                                <td>{{c.typeOperation}}</td>
+                                <td>{{c.reference}}</td>
+                                <td>{{c.Montant}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          
+                          
+            
+
+
+
+    
+
+
+
+
+
+
