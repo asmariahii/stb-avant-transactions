@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
           image:'https://previews.123rf.com/images/salamatik/salamatik1801/salamatik180100019/92979836-ic%C3%B4ne-de-visage-anonyme-de-profil-personne-silhouette-grise-avatar-par-d%C3%A9faut-masculin-photo.jpg',
           demande: '' ,
           rib: '',
+          cin: data.cin,
   
          uid: user.user?.uid ?? '',
          

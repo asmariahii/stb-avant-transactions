@@ -20,6 +20,14 @@
                 <mat-error *ngIf="telephone.errors?.['required'] && telephone.touched">Le numéro de téléphone est obligatoire.</mat-error>
                 <mat-error *ngIf="telephone.errors?.['pattern'] && telephone.touched">Le numéro de téléphone doit être au format +216xxxxxxxx ou +216xxxxxxxxx</mat-error>
               </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>CIN</mat-label>
+                <input matInput type="text" placeholder="Numéro de carte d'identité tunisienne" name="cin" #cin="ngModel" ngModel pattern="^\d{8}$" required>
+                <mat-error *ngIf="cin.errors?.['required'] && cin.touched">Le numéro de carte d'identité tunisienne est obligatoire.</mat-error>
+                <mat-error *ngIf="cin.errors?.['pattern'] && cin.touched">Le numéro de carte d'identité tunisienne doit être composé de 8 chiffres.</mat-error>
+              </mat-form-field>
+              
   
               <mat-form-field appearance="fill">
                 <input matInput placeholder="Adresse" name="adresse" #adresse="ngModel" ngModel required>

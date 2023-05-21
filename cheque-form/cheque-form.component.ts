@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 interface UserProfile {
   demande: string;
+  rib: string;
 }
 
 @Component({
@@ -23,8 +24,12 @@ export class ChequeFormComponent {
   Uid: string | undefined;
   dataProfile: UserProfile = {
     demande: '',
+    rib: '',
   };
   demandeEnCours = false;
+  rib: string | undefined;
+  ribMatch = true; // Propriété pour indiquer si le RIB correspond
+
 
   constructor(
     private as: AuthService,
@@ -48,6 +53,13 @@ export class ChequeFormComponent {
   }
 
   onSubmit(form: NgForm) {
+    // Validate the RIB match
+    if (this.rib !== this.dataProfile.rib) {
+      this.messageSent = true;
+      this.message = `Le RIB saisi ne correspond pas au RIB enregistré.`;
+      return;
+    }
+  
     // Enregistre la demande de l'utilisateur dans la base de données Firebase
     if (this.Uid) {
       this.fs.collection("users").doc<UserProfile>(this.Uid).update({ demande: '' })
@@ -56,6 +68,7 @@ export class ChequeFormComponent {
           this.message = `Votre demande de chéquier a été envoyée avec succès. Nous vous contacterons dès que possible pour vous informer de la suite des opérations.`;
           // Réinitialise les champs du formulaire
           this.nombreChequiers = undefined;
+          this.rib = undefined;
         })
         .catch((error) => {
           console.error("Erreur lors de l'enregistrement de la demande dans la base de données :", error);
@@ -64,4 +77,5 @@ export class ChequeFormComponent {
         });
     }
   }
+  
 }

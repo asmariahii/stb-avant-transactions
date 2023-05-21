@@ -13,6 +13,7 @@ interface UserProfile {
   email: string;
   adresse: string;
   uid:string;
+  rib:string;
 }
 
 @Component({
@@ -33,7 +34,8 @@ export class EspaceClientComponent implements OnInit {
     telephone: '',
     email: '',
     adresse: '',
-    uid:''
+    uid:'',
+    rib:'',
   };
   name: string | undefined;
   successUpdate: boolean = false;
@@ -68,6 +70,8 @@ export class EspaceClientComponent implements OnInit {
       this.dataProfile.email = data?.email ?? '';
       this.dataProfile.adresse = data?.adresse ?? '';
       this.dataProfile.uid = localStorage.getItem("userConnect") ?? ''; // Update the UID value with fallback
+      this.dataProfile.rib = data?.rib ?? '';
+
 
       
 

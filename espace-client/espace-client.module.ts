@@ -15,6 +15,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatDividerModule,
     MatListModule,
     MatIconModule,
+    AngularFirestoreModule,
+    MatFormFieldModule,
+
 
 
     

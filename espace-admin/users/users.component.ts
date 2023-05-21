@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+
+
+
+interface User {
+  nom: string;
+  email: string;
+  accountType: string;
+  uid: string;
+  flName: string;
+  rib: string;
+}
 
 @Component({
   selector: 'app-users',
@@ -8,13 +19,19 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: any[] = []; // Tableau pour stocker les données des utilisateurs
+  usersCollection!: AngularFirestoreCollection<User>;
+  users!: Observable<User[]>;
+  displayedColumns: string[] = ['flName', 'email', 'accountType', 'uid', 'rib'];
 
   constructor(private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    this.firestore.collection('users').valueChanges().subscribe((users: any[]) => {
-      this.users = users;
-    });
+    this.usersCollection = this.firestore.collection<User>('users');
+    this.users = this.usersCollection.valueChanges();
+  }
+
+  updateRib(user: User, newRib: string): void {
+    user.rib = newRib;
+    this.usersCollection.doc(user.uid).update({ rib: newRib });
   }
 }

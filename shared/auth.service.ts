@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class AuthService {
   user: Observable<firebase.User | null>;
 
-  constructor(private fa: AngularFireAuth, private router: Router) {
+  constructor(private fa: AngularFireAuth, private router: Router,
+    ) {
     this.user = this.fa.user;
   }
 
@@ -22,6 +23,11 @@ export class AuthService {
   signIn(email: string, password: string) {
     return this.fa.signInWithEmailAndPassword(email, password);
   }
+  async getUID(): Promise<string> {
+    const user = await this.fa.currentUser;
+    return user?.uid ?? '';
+  }
+  
 
  
   signOut() {
@@ -29,4 +35,5 @@ export class AuthService {
       this.router.navigate(['/']); // Navigate to home page after sign out
     });
   }
+  
 }

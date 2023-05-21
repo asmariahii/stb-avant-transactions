@@ -1,0 +1,25 @@
+<h2>Liste des demandes de cartes</h2>
+
+<table class="card-requests-table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>rib</th>
+      <th>Date de demande</th>
+      <th>Statut</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let demande of demandes | async">
+      <td>{{ demande.f1Name }}</td>
+      <td>{{ demande.rib }}</td>
+      <td>{{ demande.dateExpiration }}</td>
+      <td>{{ demande.statut }}</td>
+      <td>
+        <button (click)="approveDemande(demande)">Approuver</button>
+        <button (click)="rejectDemande(demande)">Rejeter</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
